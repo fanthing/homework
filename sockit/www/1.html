@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="jquery.js" charset="utf-8"></script>
+    <script>
+
+     $(function(){
+       let btn1 = $("#btn1");
+       btn1.on("click",function(){
+         $.ajax({
+          url: 'http://127.0.0.1:8080/reg',
+          data: {user: $('#user').val(), pass: $('#pass').val()},
+          dataType: 'json',
+          success(res){
+            if(res.code){
+              alert('注册失败，'+res.msg);
+            }else{
+              alert('注册成功');
+            }
+          },
+          error(err){       //通信失败
+            alert('注册失败，网络不通');
+          }
+        });
+       })
+     })
+
+    </script>
+  </head>
+  <body>
+    <input id="user" type="text" />
+    <input id="pass" type="password" />
+    <input id="btn1" type="button" value="注册"/>
+
+  </body>
+</html>
